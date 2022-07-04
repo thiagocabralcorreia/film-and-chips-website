@@ -1,7 +1,12 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import { TopBar, LinkTitle } from './styles';
 
-export function Header() {
+export const Header = () => {
   return (
-    <div>Header</div>
-  )
+    <TopBar>
+      <LinkTitle to={'/'}>
+          F<span>I</span>LM & CH<span>I</span>PS
+      </LinkTitle>
+    </TopBar>
+  );
 };
