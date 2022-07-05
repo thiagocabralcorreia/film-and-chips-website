@@ -18,16 +18,12 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <div className="App">
           <Header />
-          <div>
             <Switch>
               <Route path='/' element={<Home />} />
               <Route path='/movie/:movieID' element={<MovieDetails />} />
             </Switch>
-          </div>
           <Footer />
-        </div>
       </ThemeProvider>
     </Router>
   );

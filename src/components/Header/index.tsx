@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { TopBar, LinkTitle } from './styles';
 
 export const Header = () => {

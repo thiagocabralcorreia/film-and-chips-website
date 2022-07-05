@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom';
+
 import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
-export const TopBar = styled.div`
+export const FooterContainer = styled.div`
 	width: 100%;
 	box-shadow: 0px 0px 0px;
   padding: 10px 20px;
@@ -10,14 +10,8 @@ export const TopBar = styled.div`
 	background-color: ${props => props.theme.colors.gray500};
 `;
 
-export const LinkTitle = styled(Link)`
-  font-size: ${txt.size.h1};
-	font-weight: ${txt.weight.bold};
+export const FooterText = styled.p`
+  font-size: ${txt.size.extraSmall};
+	font-weight: ${txt.weight.regular};
 	color: ${props => props.theme.colors.white};
-	cursor: pointer;
-  text-decoration: none;
-
-	& > span {
-		color: ${props => props.theme.colors.primary};
-	}
 `;
