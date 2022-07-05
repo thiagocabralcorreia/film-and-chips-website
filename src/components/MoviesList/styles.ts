@@ -8,6 +8,8 @@ export const ListContainer = styled.div`
 export const ListMovies = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  margin: 0 20px;
+  gap: 20px;
 `;
 
 

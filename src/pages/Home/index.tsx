@@ -8,7 +8,7 @@ import { APIKey } from '../../services/MovieApiKey';
 
 const Home = () => {
   const dispatch = useDispatch();
-  const movieQuery = 'Sherlock';
+  const movieQuery = 'Knight';
   
   useEffect(() => {
     const fetchMovies = async () => {

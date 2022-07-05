@@ -24,6 +24,7 @@ export const MovieCard = ({ data }: MovieCardSchema ) => {
   return (
     <Card>
       <CardLink to={`/movie/${data.imdbID}`}>
+        <div>
           <CardTop>
             <CardPoster src={data.Poster} alt={data.Title} />
           </CardTop>
@@ -31,6 +32,7 @@ export const MovieCard = ({ data }: MovieCardSchema ) => {
               <CardTitle>{data.Title}</CardTitle>
               <CardTYear>{data.Year}</CardTYear>
           </CardInfo>
+          </div>
       </CardLink>
     </Card>
   );
