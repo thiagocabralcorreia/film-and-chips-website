@@ -14,13 +14,20 @@ export const MovieGrid = styled.div`
   gap: 50px;
 `;
 
-export const MovieRating = styled.div`
+export const MovieNumbers = styled.div`
+  display: flex;
+  flex-direction: row;
   margin-top: 20px;
-  color:  ${props => props.theme.colors.title};
+`;
+
+export const MovieNumericalData = styled.p`
+  color: ${props => props.theme.colors.title};
   display: flex;
 
   & > span {
-    margin-right: 20px;
+    margin: 0 6px;
+    font-weight: ${txt.weight.extrabold};
+    color: ${props => props.theme.colors.primary};
   }
 `;
 
@@ -29,15 +36,12 @@ export const MovieTitle = styled.h3`
 	font-size: ${txt.size.h1};
 	font-weight: ${txt.weight.bold};
 	color: ${props => props.theme.colors.title};
-
-	& > span {
-		color: ${props => props.theme.colors.text};
-	}
 `;
 
 export const MoviePlot = styled.div`
   margin: 20px 0 10px;
   line-height: 1.8rem;
+  color: ${props => props.theme.colors.text};
 `;
 
 export const MovieInfo = styled.p`
@@ -54,7 +58,10 @@ export const MovieInfo = styled.p`
   }
 `;
 
-export const Icon = styled.i`
-  color: ${props => props.theme.colors.primary};
-  margin-right: 6px;
+export const LoadingContainer = styled.div`
+  height: 70vh;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 `;

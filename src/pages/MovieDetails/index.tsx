@@ -1,17 +1,22 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { getSelectedMovie, fetchAsyncMovieDetails } from '../../features/movies/movieSlice';
+import {
+  getSelectedMovie,
+  fetchAsyncMovieDetails,
+  removeAsyncMovieDetails
+} from '../../features/movies/movieSlice';
 import { AppDispatch } from '../../features/store';
 
 import {
   MovieContainer,
   MovieGrid,
   MovieTitle,
-  MovieRating,
+  MovieNumbers,
+  MovieNumericalData,
   MoviePlot,
   MovieInfo,
-  Icon,
+  LoadingContainer
 } from './styles';
 
 const MovieDetails = () => {
@@ -21,31 +26,35 @@ const MovieDetails = () => {
 
   useEffect(() => {
     dispatch(fetchAsyncMovieDetails(imdbID));    
-    console.log('movieDetail', data)
+    return () => {
+      dispatch(removeAsyncMovieDetails());
+    }
   }, [dispatch, imdbID]);
   
   return (
     <MovieContainer>
       {Object.keys(data).length === 0 ? (
-        <div>Loading...</div>
+        <LoadingContainer>
+          <p>Loading...</p>
+        </LoadingContainer>
       ) : (
         <MovieGrid>
           <div>
-              <MovieTitle>{data.Title.toUpperCase()}</MovieTitle>
-              <MovieRating>
-                <span>
-                  <Icon className='fa fa-star'></Icon>IMDB Rating: {data.imdbRating}
-                </span>
-                <span>
-                  <Icon className='fa fa-thumbs-up'></Icon>IMDB Votes: {data.imdbVotes}
-                </span>
-                <span>
-                  <Icon className='fa fa-film'></Icon>Runtime: {data.Runtime}
-                </span>
-                <span>
-                  <Icon className='fa fa-calendar'></Icon>Year: {data.Year}
-                </span>
-            </MovieRating>
+            <MovieTitle>{data.Title.toUpperCase()}</MovieTitle>
+            <MovieNumbers>
+              <MovieNumericalData>
+                IMDB Rating: {data.imdbRating}
+              </MovieNumericalData>
+              <MovieNumericalData>
+                <span>|</span>IMDB Votes: {data.imdbVotes}
+              </MovieNumericalData>
+              <MovieNumericalData>
+                <span>|</span>Runtime: {data.Runtime}
+              </MovieNumericalData>
+              <MovieNumericalData>
+                <span>|</span>Year: {data.Year}
+              </MovieNumericalData>
+            </MovieNumbers>
             <MoviePlot>{data.Plot}</MoviePlot>
             <div>
               <MovieInfo>
@@ -53,11 +62,11 @@ const MovieDetails = () => {
                 <span>{data.Director}</span>
               </MovieInfo>
               <MovieInfo>
-                <span>Stars</span>
+                <span>Cast</span>
                 <span>{data.Actors}</span>
               </MovieInfo>
               <MovieInfo>
-                <span>Generes</span>
+                <span>Genres</span>
                 <span>{data.Genre}</span>
               </MovieInfo>
               <MovieInfo>

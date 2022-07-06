@@ -12,7 +12,7 @@ import light from './styles/themes/light';
 import dark from './styles/themes/dark';
 
 function App() {
-  const [ theme, setTheme ] = useState<DefaultTheme>(light);
+  const [ theme, setTheme ] = useState<DefaultTheme>(dark);
   
   return (
     <Router>
