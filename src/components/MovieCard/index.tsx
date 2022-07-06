@@ -20,7 +20,8 @@ export interface MovieCardSchema {
   data: MovieDataSchema;
 };
 
-export const MovieCard = ({ data }: MovieCardSchema ) => {
+export const MovieCard = ({ data }: MovieCardSchema) => {
+ 
   return (
     <Card>
       <CardLink to={`/movie/${data.imdbID}`}>

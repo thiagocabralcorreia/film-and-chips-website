@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { txt } from '../../styles/themes/typography';
 
 export const Card = styled.div`
   cursor: pointer;

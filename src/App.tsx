@@ -21,7 +21,7 @@ function App() {
           <Header />
             <Switch>
               <Route path='/' element={<Home />} />
-              <Route path='/movie/:movieID' element={<MovieDetails />} />
+              <Route path='/movie/:imdbID' element={<MovieDetails />} />
             </Switch>
           <Footer />
       </ThemeProvider>

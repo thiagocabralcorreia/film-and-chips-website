@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 import moviesReducer from './movies/movieSlice';
 
 export const store = configureStore({
@@ -6,3 +7,6 @@ export const store = configureStore({
     movies: moviesReducer
   }
 });
+
+export type AppDispatch = typeof store.dispatch
+export const useAppDispatch: () => AppDispatch = useDispatch;

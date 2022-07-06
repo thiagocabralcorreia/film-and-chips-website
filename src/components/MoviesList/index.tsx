@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { getAllMovies } from '../../features/movies/movieSlice';
 import { MovieCard } from '../MovieCard';
 
-import { ListContainer, ListTitle, ListMovies } from './styles';
+import { ListContainer, ListTitle, ListMovies, ListError } from './styles';
 
 export const MoviesList = () => {
   const movies = useSelector(getAllMovies);
@@ -13,8 +13,8 @@ export const MoviesList = () => {
       <MovieCard key={index} data={movie} />
       ))
     ) : (
-      <div className='movies-error'>
-        <h3>{movies.Error}</h3>
+      <div>
+        <ListError>{movies.Error}</ListError>
       </div>
     );
   return (

@@ -3,9 +3,10 @@ import { useDispatch } from 'react-redux';
 
 import { MoviesList } from '../../components/MoviesList';
 import { fetchAsyncMovies } from '../../features/movies/movieSlice';
+import { AppDispatch } from '../../features/store';
 
 const Home = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     dispatch(fetchAsyncMovies());
@@ -13,7 +14,7 @@ const Home = () => {
 
   return (
     <div style={{ minHeight: '80vh' }}>
-      <MoviesList/>
+      <MoviesList />
     </div>
   )
 }
