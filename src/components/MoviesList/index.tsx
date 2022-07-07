@@ -10,7 +10,7 @@ export const MoviesList = () => {
 
   renderMovies = movies.errorMessage === '' ? (
     movies.items.map((movie, index) => (
-      <MovieCard key={index} data={movie} />
+      movie.rank >= 50 && <MovieCard key={index} data={movie} />
       ))
     ) : (
       <div>

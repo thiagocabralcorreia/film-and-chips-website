@@ -11,6 +11,7 @@ import { Footer } from './components/Footer';
 import GlobalStyle from './styles/global';
 import light from './styles/themes/light';
 import dark from './styles/themes/dark';
+import MovieDetails from './pages/MovieDetails';
 
 function App() {
   const [ theme, setTheme ] = useState<DefaultTheme>(dark);
@@ -23,7 +24,7 @@ function App() {
         <SearchBar/>
             <Switch>
               <Route path='/' element={<Home />} />
-              {/*<Route path='/movie/:id' element={<MovieDetails />} />*/}
+              <Route path='/movie/:id' element={<MovieDetails />} />
             </Switch>
           <Footer />
       </ThemeProvider>
