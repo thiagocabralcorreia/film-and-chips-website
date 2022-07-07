@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-d
 import { ThemeProvider, DefaultTheme  } from 'styled-components';
 
 import Home from './pages/Home';
-import MovieDetails from './pages/MovieDetails';
+//import MovieDetails from './pages/MovieDetails';
 import { Header } from './components/Header';
+import { SearchBar } from './components/SearchBar';
 import { Footer } from './components/Footer';
 
 import GlobalStyle from './styles/global';
@@ -18,10 +19,11 @@ function App() {
     <Router>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-          <Header />
+        <Header />
+        <SearchBar/>
             <Switch>
               <Route path='/' element={<Home />} />
-              <Route path='/movie/:imdbID' element={<MovieDetails />} />
+              {/*<Route path='/movie/:id' element={<MovieDetails />} />*/}
             </Switch>
           <Footer />
       </ThemeProvider>

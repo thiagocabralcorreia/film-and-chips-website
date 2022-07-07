@@ -8,18 +8,18 @@ export const MoviesList = () => {
   const movies = useSelector(getAllMovies);
   let renderMovies = undefined;
 
-  renderMovies = movies.Response === 'True' ? (
-    movies.Search.map((movie, index) => (
+  renderMovies = movies.errorMessage === '' ? (
+    movies.items.map((movie, index) => (
       <MovieCard key={index} data={movie} />
       ))
     ) : (
       <div>
-        <ListError>{movies.Error}</ListError>
+        <ListError>{movies.errorMessage}</ListError>
       </div>
     );
   return (
     <ListContainer>
-        <ListTitle>MOVIES</ListTitle>
+        <ListTitle>MOST POPULAR MOVIES</ListTitle>
         <ListMovies>{renderMovies}</ListMovies>
     </ListContainer>
   )

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { txt } from '../../styles/themes/typography';
 
 export const Card = styled.div`
   cursor: pointer;
   transition: all 0.3s;
+  padding: 10px;
   background-color: ${props => props.theme.colors.gray500};
   transition: 0.75s;
   border-radius: 6px;
@@ -45,14 +47,15 @@ export const CardPoster = styled.img`
 `;
 
 export const CardInfo = styled.div`
-  padding: 15px 20px;
+  padding: 10px 0 5px;
 `;
 
 export const CardTitle = styled.h4`
-  
+  font-size: ${txt.size.small};
+  font-weight: ${txt.weight.semibold};
   margin-bottom: 10px;
 `;
 
 export const CardTYear = styled.p`
-  margin-bottom: 10px;
+  font-size: ${txt.size.small};
 `;
