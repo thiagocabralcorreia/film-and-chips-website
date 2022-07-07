@@ -4,23 +4,30 @@ import { MovieDataSchema } from '../../components/MovieCard';
 import MovieApi from '../../services/MovieApi';
 import { APIKey } from '../../services/MovieApiKey';
 
-export interface movieSchema {
+export interface MovieSchema {
   Search: MovieDataSchema[],
   totalResults: string,
   Response: string,
   Error?: string,
 };
 
-export interface movieSchema {
+export interface MovieSchema {
   Search: MovieDataSchema[],
   totalResults: string,
   Response: string,
   Error?: string,
 };
 
-export interface moviesSchema {
+export interface SelectedMovieSchema {
+  Search: MovieDataSchema[],
+  totalResults: string,
+  Response: string,
+  Error?: string,
+};
+
+export interface MoviesSchema {
   movies: {
-    movies: movieSchema,
+    movies: MovieSchema,
     selectedMovie: any,
   }
 };
@@ -28,9 +35,9 @@ export interface moviesSchema {
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
   async () => {
+    const initialTerm = 'Knight';
     try {
-      const movieQuery = 'Knight';
-      const { data } = await MovieApi.get(`?apiKey=${APIKey}&s=${movieQuery}&type=movie`);
+      const { data } = await MovieApi.get(`?apiKey=${APIKey}&s=${initialTerm}&type=movie`);
       return data;
     }
     catch (error) {
@@ -82,7 +89,7 @@ const movieSlice = createSlice({
 });
 
 export const { removeAsyncMovieDetails } = movieSlice.actions;
-export const getAllMovies = (state: moviesSchema) => state.movies.movies;
-export const getSelectedMovie = (state: moviesSchema) => state.movies.selectedMovie;
+export const getAllMovies = (state: MoviesSchema) => state.movies.movies;
+export const getSelectedMovie = (state: MoviesSchema) => state.movies.selectedMovie;
 
 export default movieSlice.reducer;
