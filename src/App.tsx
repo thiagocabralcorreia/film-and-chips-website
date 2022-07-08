@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes as Switch, Route } from 'react-router-d
 import { ThemeProvider, DefaultTheme  } from 'styled-components';
 
 import Home from './pages/Home';
-//import MovieDetails from './pages/MovieDetails';
+import SearchResults from './pages/SearchResults';
 import { Header } from './components/Header';
 import { SearchBar } from './components/SearchBar';
 import { Footer } from './components/Footer';
@@ -24,6 +24,7 @@ function App() {
         <SearchBar/>
             <Switch>
               <Route path='/' element={<Home />} />
+              <Route path='/results/:expression' element={<SearchResults />} />
               <Route path='/movie/:id' element={<MovieDetails />} />
             </Switch>
           <Footer />

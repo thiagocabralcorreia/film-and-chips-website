@@ -45,11 +45,15 @@ const MovieDetails = () => {
           <div>
             <MovieTitle>{data.title.toUpperCase()}</MovieTitle>
             <MovieNumbers>
-              <MovieContentRating>
-                {data.contentRating}
-              </MovieContentRating>
               {
-                data?.imDbRating !== '' && (
+                data?.contentRating && (
+                  <MovieContentRating>
+                    {data.contentRating}
+                  </MovieContentRating>
+                )
+              }
+              {
+                data?.imDbRating && (
                   <MovieNumericalData>
                      IMDB Rating: {data?.imDbRating} <span>|</span>
                   </MovieNumericalData>

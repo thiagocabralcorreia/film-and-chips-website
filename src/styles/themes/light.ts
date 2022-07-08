@@ -11,7 +11,8 @@ const light =  {
 		gray500: '#222',
 		title: '#222',
 		text: '#444',
-		background: '#fff',
+    background: '#fff',
+    alert: '#ff8d23'
 	},
 }
 

@@ -1,29 +1,32 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import {
-  fetchAsyncMovies,
-  getAllMovies,
+  fetchAsyncSearchedMovies,
+  getAllSearchedMovies,
   MovieItemSchema
 } from '../../features/movies/movieSlice';
-import { MovieCard } from '../../components/MovieCard';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
+import { LoadingContainer } from '../MovieDetails/styles';
 
 import { ListError } from '../../components/MoviesList/styles'; /////////////
+import { MovieCard } from '../../components/MovieCard';
 
-const Home = () => {
+const SearchResults = () => {
+  const { expression } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  const movies = useSelector(getAllMovies);
+  const movies = useSelector(getAllSearchedMovies);
   let renderMovies = undefined;
-
+ 
   useEffect(() => {
-    dispatch(fetchAsyncMovies());
+    dispatch(fetchAsyncSearchedMovies(expression));
   }, [dispatch]);
 
   renderMovies = movies.errorMessage === '' ? (
-    movies?.items?.map((movie: MovieItemSchema) => (
+    movies?.results?.map((movie: MovieItemSchema) => (
       <MovieCard key={movie.id} data={movie} />
     ))
   ) : movies.errorMessage ? (
@@ -38,11 +41,17 @@ const Home = () => {
 
   return (
     <div style={{ minHeight: '80vh' }}>
-      <MoviesList title='MOST POPULAR MOVIES'>
-        {renderMovies}
-      </MoviesList>
+      {Object.keys(movies).length === 0 ? (
+        <LoadingContainer>
+          <p>Loading...</p>
+        </LoadingContainer>
+      ) : (
+        <MoviesList title='MOST POPULAR MOVIES'>
+          {renderMovies}
+        </MoviesList>
+      )}
     </div>
   )
-}
+};
 
-export default Home;
+export default SearchResults;

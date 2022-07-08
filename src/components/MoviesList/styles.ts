@@ -20,8 +20,13 @@ export const ListTitle = styled.h3`
 `;
 
 export const ListError = styled.h4`
-  font-size: ${txt.size.regular};
-  color: ${props => props.theme.colors.title};
+  font-size: ${txt.size.h1};
+  color: ${props => props.theme.colors.primary};
   margin-bottom: 20px;
   font-weight: ${txt.weight.bold};
+  position: absolute;
+
+  & > span {
+		color: ${props => props.theme.colors.alert};
+	}
 `;

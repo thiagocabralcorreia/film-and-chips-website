@@ -11,7 +11,8 @@ const dark = {
 		gray500: '#222',
 		title: '#fff',
 		text: '#c8c3bc',
-		background: '#000000',
+    background: '#000000',
+    alert: '#ff8d23'
 	},
 }
 

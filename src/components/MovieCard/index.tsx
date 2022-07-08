@@ -9,14 +9,6 @@ import {
   CardTYear
 } from './styles';
 
-export interface MovieDataSchema {
-    imdbID: string,
-    Poster: string | undefined,
-    Title: string,
-    Year: number,
-    Type: 'movie',
-};
-
 export interface MovieCardSchema {
   data: MovieItemSchema;
 };
@@ -31,10 +23,11 @@ export const MovieCard = ({ data }: MovieCardSchema) => {
             <CardPoster src={data.image} alt={data.title} />
           </CardTop>
           <CardInfo>
-              <CardTitle>{data.title}</CardTitle>
-              <CardTYear>{data.year}</CardTYear>
+            <CardTitle>{data.title}</CardTitle>
+            {data?.year && <CardTYear>{data.year}</CardTYear>}
+            {data?.description && <CardTYear>{data.description}</CardTYear>}
           </CardInfo>
-          </div>
+        </div>
       </CardLink>
     </Card>
   );
