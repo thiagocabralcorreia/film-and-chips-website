@@ -13,23 +13,25 @@ import {
   MovieGrid,
   MovieTitle,
   MovieNumbers,
+  MovieContentRating,
   MovieNumericalData,
   MoviePlot,
   MovieInfo,
+  MoviePoster,
   LoadingContainer
 } from './styles';
 
 const MovieDetails = () => {
-  const { imdbID } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector(getSelectedMovie);
 
   useEffect(() => {
-    dispatch(fetchAsyncMovieDetails(imdbID));    
+    dispatch(fetchAsyncMovieDetails(id));
     return () => {
       dispatch(removeAsyncMovieDetails());
     }
-  }, [dispatch, imdbID]);
+  }, [dispatch, id]);
   
   return (
     <MovieContainer>
@@ -39,48 +41,50 @@ const MovieDetails = () => {
         </LoadingContainer>
       ) : (
         <MovieGrid>
+          <MoviePoster src={data.image} alt={data.title} />
           <div>
-            <MovieTitle>{data.Title.toUpperCase()}</MovieTitle>
+            <MovieTitle>{data.title.toUpperCase()}</MovieTitle>
             <MovieNumbers>
+              {
+                data?.contentRating && (
+                  <MovieContentRating>
+                    {data.contentRating}
+                  </MovieContentRating>
+                )
+              }
+              {
+                data?.imDbRating && (
+                  <MovieNumericalData>
+                     IMDB Rating: {data?.imDbRating} <span>|</span>
+                  </MovieNumericalData>
+                )
+              }
               <MovieNumericalData>
-                IMDB Rating: {data.imdbRating}
+                Runtime: {data.runtimeStr}
               </MovieNumericalData>
               <MovieNumericalData>
-                <span>|</span>IMDB Votes: {data.imdbVotes}
-              </MovieNumericalData>
-              <MovieNumericalData>
-                <span>|</span>Runtime: {data.Runtime}
-              </MovieNumericalData>
-              <MovieNumericalData>
-                <span>|</span>Year: {data.Year}
+                <span>|</span>Year: {data.year}
               </MovieNumericalData>
             </MovieNumbers>
-            <MoviePlot>{data.Plot}</MoviePlot>
+            <MoviePlot>{data.plot}</MoviePlot>
             <div>
               <MovieInfo>
                 <span>Director</span>
-                <span>{data.Director}</span>
+                <span>{data.directors}</span>
               </MovieInfo>
               <MovieInfo>
-                <span>Cast</span>
-                <span>{data.Actors}</span>
+                <span>Writer</span>
+                <span>{data.writers}</span>
               </MovieInfo>
               <MovieInfo>
                 <span>Genres</span>
-                <span>{data.Genre}</span>
+                <span>{data.genres}</span>
               </MovieInfo>
               <MovieInfo>
                 <span>Languages</span>
-                <span>{data.Language}</span>
-              </MovieInfo>
-              <MovieInfo>
-                <span>Awards</span>
-                <span>{data.Awards}</span>
+                <span>{data.languages}</span>
               </MovieInfo>
             </div>
-          </div>
-          <div>
-            <img src={data.Poster} alt={data.Title} />
           </div>
         </MovieGrid>
       )}

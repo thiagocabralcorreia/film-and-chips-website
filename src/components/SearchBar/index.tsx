@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
-import { fetchAsyncMovies } from '../../features/movies/movieSlice';
+import { fetchAsyncSearchedMovies } from '../../features/movies/movieSlice';
 
 import {
   SearchBarContainer,
@@ -13,20 +14,32 @@ import {
 } from './styles';
 
 export const SearchBar = () => {
-  const [term, setTerm] = useState('Knight');
+  const [term, setTerm] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
+
+  const handleOnSubmit = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (term !== '') {
+      dispatch(fetchAsyncSearchedMovies(term));
+      console.log({ term })
+      navigate(`/results/${term}`);
+    }
+  };
 
   return (
     <SearchBarContainer>
       <SearchBarWrapper>
-        <SearchBarForm>
+        <SearchBarForm onSubmit={handleOnSubmit}>
           <SearchButton type='submit'>
             <InputIcon className='fa fa-search'></InputIcon>
           </SearchButton>
           <SearchBarInput
             type='text'
+            value={term}
             placeholder='Search for a movie...'
             onChange={(e) => setTerm(e.target.value)}
-          />
+            />
         </SearchBarForm>
       </SearchBarWrapper>
     </SearchBarContainer>

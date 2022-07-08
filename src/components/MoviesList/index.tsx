@@ -1,26 +1,16 @@
-import { useSelector } from 'react-redux';
-import { getAllMovies } from '../../features/movies/movieSlice';
-import { MovieCard } from '../MovieCard';
+import { ReactNode } from 'react';
+import { ListContainer, ListTitle, ListMovies } from './styles';
 
-import { ListContainer, ListTitle, ListMovies, ListError } from './styles';
+interface MoviesListProps {
+  title: string,
+  children: JSX.Element[] | JSX.Element | undefined
+}
 
-export const MoviesList = () => {
-  const movies = useSelector(getAllMovies);
-  let renderMovies = undefined;
-
-  renderMovies = movies.Response === 'True' ? (
-    movies.Search.map((movie, index) => (
-      <MovieCard key={index} data={movie} />
-      ))
-    ) : (
-      <div>
-        <ListError>{movies.Error}</ListError>
-      </div>
-    );
+export const MoviesList = ({ title, children }: MoviesListProps) => {
   return (
     <ListContainer>
-        <ListTitle>MOVIES</ListTitle>
-        <ListMovies>{renderMovies}</ListMovies>
+        <ListTitle>{title}</ListTitle>
+        <ListMovies>{children}</ListMovies>
     </ListContainer>
   )
 };

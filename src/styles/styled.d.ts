@@ -14,7 +14,8 @@ declare module 'styled-components' {
 			gray500: string;
 			title: string;
 			text: string;
-			background: string;
+      background: string;
+      alert: string;
 		}
 	}
 }

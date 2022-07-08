@@ -1,43 +1,50 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { MovieDataSchema } from '../../components/MovieCard';
 
 import MovieApi from '../../services/MovieApi';
 import { APIKey } from '../../services/MovieApiKey';
 
-export interface MovieSchema {
-  Search: MovieDataSchema[],
-  totalResults: string,
-  Response: string,
-  Error?: string,
+export interface MovieItemSchema {
+    id: string,
+    image: string,
+    title: string,
+    year?: number,
+    description?: string,
 };
 
 export interface MovieSchema {
-  Search: MovieDataSchema[],
-  totalResults: string,
-  Response: string,
-  Error?: string,
-};
+  errorMessage: string | '',
+  items?: MovieItemSchema[],
+  results?: MovieItemSchema[]
+}
 
 export interface SelectedMovieSchema {
-  Search: MovieDataSchema[],
-  totalResults: string,
-  Response: string,
-  Error?: string,
+  id: string,
+  image: string,
+  title: string,
+  contentRating: string,
+  year: string,
+  genres: string,
+  runtimeStr: string,
+  directors: string,
+  writers: string,
+  plot: string,
+  imDbRating: string,
+  languages: string
 };
 
 export interface MoviesSchema {
   movies: {
     movies: MovieSchema,
-    selectedMovie: any,
+    searchedMovies: MovieSchema,
+    selectedMovie: SelectedMovieSchema,
   }
 };
 
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
   async () => {
-    const initialTerm = 'Knight';
     try {
-      const { data } = await MovieApi.get(`?apiKey=${APIKey}&s=${initialTerm}&type=movie`);
+      const { data } = await MovieApi.get(`/MostPopularMovies/${APIKey}`);
       return data;
     }
     catch (error) {
@@ -49,7 +56,8 @@ export const fetchAsyncMovieDetails = createAsyncThunk(
   'movies/fetchAsyncMovieDetails',
   async (id: string | undefined) => {
     try {
-      const { data } = await MovieApi.get(`?apiKey=${APIKey}&i=${id}&Plot=full`);
+      const { data } = await MovieApi.get(`/Title/${APIKey}/${id}/FullActor,Posters`);
+      console.log({data})
       return data;
     }
     catch (error) {
@@ -57,9 +65,22 @@ export const fetchAsyncMovieDetails = createAsyncThunk(
     };
 });
 
+export const fetchAsyncSearchedMovies = createAsyncThunk(
+  'movies/fetchAsyncSearchedMovies',
+  async (expression: string | undefined) => {
+    try {
+      const { data } = await MovieApi.get(`/SearchMovie/${APIKey}/${expression}`);
+      return data;
+    }
+    catch (error) {
+      console.log({ error });
+    }
+});
+
 const initialState = {
   movies: {},
   selectedMovie: {},
+  searchedMovies: {},
 };
 
 const movieSlice = createSlice({
@@ -84,12 +105,23 @@ const movieSlice = createSlice({
     [fetchAsyncMovieDetails.fulfilled.toString()]: (state, { payload }) => {
       console.log('Movie details fetched successfully.');
       return { ...state, selectedMovie: payload}
-    }
+    },
+    [fetchAsyncSearchedMovies.pending.toString()]: () => {
+      console.log('Pending');
+    },
+    [fetchAsyncSearchedMovies.fulfilled.toString()]: (state, { payload }) => {
+      console.log('Searched movies fetched successfully.');
+      return { ...state, searchedMovies: payload}
+    },
+    [fetchAsyncSearchedMovies.rejected.toString()]: () => {
+      console.log('Rejected.');
+    },
   }
 });
 
 export const { removeAsyncMovieDetails } = movieSlice.actions;
 export const getAllMovies = (state: MoviesSchema) => state.movies.movies;
 export const getSelectedMovie = (state: MoviesSchema) => state.movies.selectedMovie;
+export const getAllSearchedMovies = (state: MoviesSchema) => state.movies.searchedMovies;
 
 export default movieSlice.reducer;
