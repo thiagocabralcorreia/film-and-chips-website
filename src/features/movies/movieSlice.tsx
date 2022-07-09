@@ -2,43 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import MovieApi from '../../services/MovieApi';
 import { APIKey } from '../../services/MovieApiKey';
-
-export interface MovieItemSchema {
-    id: string,
-    image: string,
-    title: string,
-    year?: number,
-    description?: string,
-};
-
-export interface MovieSchema {
-  errorMessage: string | '',
-  items?: MovieItemSchema[],
-  results?: MovieItemSchema[]
-}
-
-export interface SelectedMovieSchema {
-  id: string,
-  image: string,
-  title: string,
-  contentRating: string,
-  year: string,
-  genres: string,
-  runtimeStr: string,
-  directors: string,
-  writers: string,
-  plot: string,
-  imDbRating: string,
-  languages: string
-};
-
-export interface MoviesSchema {
-  movies: {
-    movies: MovieSchema,
-    searchedMovies: MovieSchema,
-    selectedMovie: SelectedMovieSchema,
-  }
-};
+import { MoviesSchema } from '../../types';
 
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',
@@ -80,7 +44,7 @@ export const fetchAsyncSearchedMovies = createAsyncThunk(
 const initialState = {
   movies: {},
   selectedMovie: {},
-  searchedMovies: {},
+  searchedMovies: {}
 };
 
 const movieSlice = createSlice({
@@ -89,6 +53,9 @@ const movieSlice = createSlice({
   reducers: {
     removeAsyncMovieDetails: (state) => {
       state.selectedMovie = {};
+    },
+    removeAsyncSearchedMovies: (state) => {
+      state.searchedMovies = {};
     }
   },
   extraReducers: {
@@ -119,7 +86,7 @@ const movieSlice = createSlice({
   }
 });
 
-export const { removeAsyncMovieDetails } = movieSlice.actions;
+export const { removeAsyncMovieDetails, removeAsyncSearchedMovies } = movieSlice.actions;
 export const getAllMovies = (state: MoviesSchema) => state.movies.movies;
 export const getSelectedMovie = (state: MoviesSchema) => state.movies.selectedMovie;
 export const getAllSearchedMovies = (state: MoviesSchema) => state.movies.searchedMovies;

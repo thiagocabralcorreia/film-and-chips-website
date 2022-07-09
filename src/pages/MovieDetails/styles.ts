@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
 export const MovieContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
   margin: 40px 50px;
   color:  ${props => props.theme.colors.title};
 `;
@@ -71,10 +69,30 @@ export const MoviePoster = styled.img`
   width: 100%;
 `;
 
+export const MovieSectionTitle = styled(MovieTitle)`
+  padding: 20px 0;
+  font-size: ${txt.size.h2};
+
+  & > span {
+    color: ${props => props.theme.colors.primary};
+    font-weight: ${txt.weight.extrabold};
+  }
+`;
+
+export const MovieCast = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+`;
+
 export const LoadingContainer = styled.div`
   height: 70vh;
   margin: auto;
   align-items: center;
   justify-content: center;
   text-align: center;
+`;
+
+export const MarginRight = styled.div`
+  margin-right: 20px;
 `;

@@ -14,7 +14,7 @@ import dark from './styles/themes/dark';
 import MovieDetails from './pages/MovieDetails';
 
 function App() {
-  const [ theme, setTheme ] = useState<DefaultTheme>(dark);
+  const [ theme, setTheme ] = useState<DefaultTheme>(light);
   
   return (
     <Router>

@@ -24,6 +24,7 @@ export const SearchBar = () => {
       dispatch(fetchAsyncSearchedMovies(term));
       console.log({ term })
       navigate(`/results/${term}`);
+      setTerm('');
     }
   };
 
