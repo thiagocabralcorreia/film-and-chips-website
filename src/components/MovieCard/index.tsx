@@ -1,4 +1,4 @@
-import { MovieItemSchema } from '../../features/movies/movieSlice';
+import { MovieItemSchema } from '../../types';
 import {
   Card,
   CardLink,

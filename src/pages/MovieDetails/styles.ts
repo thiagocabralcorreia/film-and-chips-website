@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
 export const MovieContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
   margin: 40px 50px;
   color:  ${props => props.theme.colors.title};
 `;
@@ -69,6 +67,22 @@ export const MovieInfo = styled.p`
 
 export const MoviePoster = styled.img`
   width: 100%;
+`;
+
+export const MovieSectionTitle = styled(MovieTitle)`
+  padding: 20px 0 10px;
+
+  & > span {
+    color: ${props => props.theme.colors.primary};
+    font-weight: ${txt.weight.extrabold};
+  }
+`;
+
+export const MovieCast = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 20px;
+  margin-bottom: 20px;
 `;
 
 export const LoadingContainer = styled.div`

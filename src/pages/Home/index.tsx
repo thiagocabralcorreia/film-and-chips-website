@@ -2,16 +2,13 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import {
-  fetchAsyncMovies,
-  getAllMovies,
-  MovieItemSchema
-} from '../../features/movies/movieSlice';
+import { fetchAsyncMovies, getAllMovies } from '../../features/movies/movieSlice';
 import { MovieCard } from '../../components/MovieCard';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
 
 import { ListError } from '../../components/MoviesList/styles'; /////////////
+import { MovieItemSchema } from '../../types';
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();

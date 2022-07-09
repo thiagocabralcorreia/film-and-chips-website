@@ -2,43 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 import MovieApi from '../../services/MovieApi';
 import { APIKey } from '../../services/MovieApiKey';
-
-export interface MovieItemSchema {
-    id: string,
-    image: string,
-    title: string,
-    year?: number,
-    description?: string,
-};
-
-export interface MovieSchema {
-  errorMessage: string | '',
-  items?: MovieItemSchema[],
-  results?: MovieItemSchema[]
-}
-
-export interface SelectedMovieSchema {
-  id: string,
-  image: string,
-  title: string,
-  contentRating: string,
-  year: string,
-  genres: string,
-  runtimeStr: string,
-  directors: string,
-  writers: string,
-  plot: string,
-  imDbRating: string,
-  languages: string
-};
-
-export interface MoviesSchema {
-  movies: {
-    movies: MovieSchema,
-    searchedMovies: MovieSchema,
-    selectedMovie: SelectedMovieSchema,
-  }
-};
+import { MoviesSchema } from '../../types';
 
 export const fetchAsyncMovies = createAsyncThunk(
   'movies/fetchAsyncMovies',

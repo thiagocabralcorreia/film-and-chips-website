@@ -3,17 +3,14 @@ import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import {
-  fetchAsyncSearchedMovies,
-  getAllSearchedMovies,
-  MovieItemSchema
-} from '../../features/movies/movieSlice';
+import { fetchAsyncSearchedMovies, getAllSearchedMovies } from '../../features/movies/movieSlice';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
 import { LoadingContainer } from '../MovieDetails/styles';
 
 import { ListError } from '../../components/MoviesList/styles'; /////////////
 import { MovieCard } from '../../components/MovieCard';
+import { MovieItemSchema } from '../../types';
 
 const SearchResults = () => {
   const { expression } = useParams();
