@@ -19,7 +19,7 @@ export const SocialMedias = styled.div`
 export const SocialMediaLink = styled.a`
   text-decoration: none;
   margin-bottom: 10px;
-  color: ${props => props.theme.colors.title};
+  color: ${props => props.theme.colors.white};
   transition: 0.5s;
   cursor: pointer;
 
@@ -30,7 +30,7 @@ export const SocialMediaLink = styled.a`
 
 export const SocialMediaIcon = styled.i`
   font-size: ${txt.size.extraBig};
-  color: ${props => props.theme.colors.title};
+  color: ${props => props.theme.colors.white};
   transition: 0.5s;
   cursor: pointer;
   margin: 0px 10px;
@@ -44,7 +44,7 @@ export const FooterText = styled.p`
   text-align: center;
   font-size: ${txt.size.extraSmall};
 	font-weight: ${txt.weight.regular};
-	color: ${props => props.theme.colors.title};
+	color: ${props => props.theme.colors.white};
 
 	& > span {
     margin: 0 5px;
@@ -55,7 +55,7 @@ export const FooterText = styled.p`
 
 export const LinkedInLink = styled.a`
   text-decoration: none;
-  color: ${props => props.theme.colors.text};
+  color: ${props => props.theme.colors.white};
   transition: 0.5s;
   cursor: pointer;
 

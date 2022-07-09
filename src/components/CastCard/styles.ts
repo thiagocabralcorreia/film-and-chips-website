@@ -4,7 +4,7 @@ import { txt } from '../../styles/themes/typography';
 export const CardCast = styled.div`
   cursor: pointer;
   transition: all 0.3s;
-  padding: 0 0 10px;
+  padding-bottom: 10px;
   transition: 0.75s;
   border-radius: 6px;
 `;
@@ -12,6 +12,7 @@ export const CardCast = styled.div`
 export const CardCastTop = styled.div`
   width: 100%;
   padding-top: 120%;
+  align-item: center;
   position: relative;
   overflow: hidden;
   border-radius: 5px;
@@ -24,8 +25,7 @@ export const CardCastPortrait = styled.img`
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  min-height: 100%;
+  min-height: 80%;
   opacity: 1;
   transition: 0.75s;
 

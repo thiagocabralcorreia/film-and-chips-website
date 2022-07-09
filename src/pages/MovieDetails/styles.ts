@@ -92,3 +92,7 @@ export const LoadingContainer = styled.div`
   justify-content: center;
   text-align: center;
 `;
+
+export const MarginRight = styled.div`
+  margin-right: 20px;
+`;

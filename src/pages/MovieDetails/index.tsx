@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { CastCard } from '../../components/CastCard';
 import { MovieCard } from '../../components/MovieCard';
+import { Slider } from '../../components/Slider';
 import { AppDispatch } from '../../features/store';
 
 import {
@@ -22,10 +23,9 @@ import {
   MovieInfo,
   MoviePoster,
   MovieSectionTitle,
-  MovieCast,
+  MarginRight,
   LoadingContainer
 } from './styles';
-import { ListMovies } from '../../components/MoviesList/styles';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -95,23 +95,31 @@ const MovieDetails = () => {
             </div>
           </MovieGrid>
           <MovieSectionTitle><span> | </span>CAST & CREW</MovieSectionTitle>
-          <MovieCast>
+          <Slider>
             {data.actorList.map((star) => {
-              return <CastCard key={star.id} star={star} />
-            }).slice(0, 18)
+              return (
+                <MarginRight>
+                  <CastCard key={star.id} star={star} />
+                </MarginRight>
+              )
+            })
             }
-          </MovieCast>
+          </Slider>
           <MovieSectionTitle><span> | </span>RECOMMENDATIONS</MovieSectionTitle>
-          <ListMovies>
+          <Slider>
             {data.similars.map((movie) => {
-              return <MovieCard key={movie.id} data={movie} />
-            }).slice(0, 18)
+              return (
+                <MarginRight>
+                  <MovieCard key={movie.id} data={movie} />
+                </MarginRight>
+              )
+            })
             }
-          </ListMovies>
+          </Slider>
         </>
       )}
     </MovieContainer>
   )
-}
+};
 
 export default MovieDetails;
