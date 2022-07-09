@@ -35,7 +35,7 @@ export const CardCastPortrait = styled.img`
 `;
 
 export const CardCastInfo = styled.div`
-  padding: 10px 0 5px;
+  padding-top: 10px;
 `;
 
 export const CardCastName = styled.h4`
@@ -49,5 +49,4 @@ export const CardCastAsCharacter = styled.h4`
   color: ${props => props.theme.colors.title};
   font-size: ${txt.size.extraSmall};
   font-weight: ${txt.weight.regular};
-  margin-bottom: 10px;
 `;

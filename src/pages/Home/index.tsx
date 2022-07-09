@@ -7,7 +7,7 @@ import { MovieCard } from '../../components/MovieCard';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
 
-import { ListError } from '../../components/MoviesList/styles'; /////////////
+import { ListError } from '../../components/MoviesList/styles';
 import { MovieItemSchema } from '../../types';
 
 const Home = () => {
@@ -35,7 +35,7 @@ const Home = () => {
 
   return (
     <div style={{ minHeight: '80vh' }}>
-      <MoviesList title='MOST POPULAR MOVIES'>
+      <MoviesList title='MOST POPULAR'>
         {renderMovies}
       </MoviesList>
     </div>

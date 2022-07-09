@@ -36,7 +36,8 @@ export interface SelectedMovieSchema {
   plot: string,
   imDbRating: string,
   languages: string,
-  actorList: CastSchema[]
+  actorList: CastSchema[],
+  similars: MovieItemSchema[]
 };
 
 export interface MoviesSchema {

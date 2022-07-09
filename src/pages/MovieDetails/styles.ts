@@ -70,7 +70,8 @@ export const MoviePoster = styled.img`
 `;
 
 export const MovieSectionTitle = styled(MovieTitle)`
-  padding: 20px 0 10px;
+  padding: 20px 0;
+  font-size: ${txt.size.h2};
 
   & > span {
     color: ${props => props.theme.colors.primary};
@@ -82,7 +83,6 @@ export const MovieCast = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 20px;
-  margin-bottom: 20px;
 `;
 
 export const LoadingContainer = styled.div`
