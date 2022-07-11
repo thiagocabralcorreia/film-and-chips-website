@@ -44,7 +44,8 @@ export const fetchAsyncSearchedMovies = createAsyncThunk(
 const initialState = {
   movies: {},
   selectedMovie: {},
-  searchedMovies: {}
+  searchedMovies: {},
+  loading: false
 };
 
 const movieSlice = createSlice({
@@ -59,34 +60,39 @@ const movieSlice = createSlice({
     }
   },
   extraReducers: {
-    [fetchAsyncMovies.pending.toString()]: () => {
+    [fetchAsyncMovies.pending.toString()]: (state) => {
       console.log('Pending');
+      return { ...state, loading: true}
     },
     [fetchAsyncMovies.fulfilled.toString()]: (state, { payload }) => {
       console.log('Movies fetched successfully.');
-      return { ...state, movies: payload}
+      return { ...state, movies: payload, loading: false}
     },
-    [fetchAsyncMovies.rejected.toString()]: () => {
+    [fetchAsyncMovies.rejected.toString()]: (state) => {
       console.log('Rejected.');
+      return { ...state, loading: false}
     },
     [fetchAsyncMovieDetails.fulfilled.toString()]: (state, { payload }) => {
       console.log('Movie details fetched successfully.');
-      return { ...state, selectedMovie: payload}
+      return { ...state, selectedMovie: payload, loading: false}
     },
-    [fetchAsyncSearchedMovies.pending.toString()]: () => {
+    [fetchAsyncSearchedMovies.pending.toString()]: (state) => {
       console.log('Pending');
+      return { ...state, loading: true}
     },
     [fetchAsyncSearchedMovies.fulfilled.toString()]: (state, { payload }) => {
       console.log('Searched movies fetched successfully.');
-      return { ...state, searchedMovies: payload}
+      return { ...state, searchedMovies: payload, loading: false}
     },
-    [fetchAsyncSearchedMovies.rejected.toString()]: () => {
+    [fetchAsyncSearchedMovies.rejected.toString()]: (state) => {
       console.log('Rejected.');
+      return { ...state, loading: false}
     },
   }
 });
 
 export const { removeAsyncMovieDetails, removeAsyncSearchedMovies } = movieSlice.actions;
+export const isLoading = (state: MoviesSchema) => state.movies.loading;
 export const getAllMovies = (state: MoviesSchema) => state.movies.movies;
 export const getSelectedMovie = (state: MoviesSchema) => state.movies.selectedMovie;
 export const getAllSearchedMovies = (state: MoviesSchema) => state.movies.searchedMovies;

@@ -2,13 +2,18 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-
-import { fetchAsyncSearchedMovies, getAllSearchedMovies, removeAsyncMovieDetails } from '../../features/movies/movieSlice';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
-import { LoadingContainer } from '../MovieDetails/styles';
+import { Loading } from '../../components/Loading';
 
-import { ListError } from '../../components/MoviesList/styles';
+import {
+  fetchAsyncSearchedMovies,
+  getAllSearchedMovies,
+  removeAsyncMovieDetails,
+  isLoading
+} from '../../features/movies/movieSlice';
+
+import { ErrorContainer, Error } from '../../styles/global';
 import { MovieCard } from '../../components/MovieCard';
 import { MovieItemSchema } from '../../types';
 
@@ -16,6 +21,7 @@ const SearchResults = () => {
   const { expression } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const movies = useSelector(getAllSearchedMovies);
+  const loading = useSelector(isLoading);
   let renderMovies = undefined;
  
   useEffect(() => {
@@ -25,31 +31,29 @@ const SearchResults = () => {
     }
   }, [dispatch, expression]);
 
-  renderMovies = movies.errorMessage === '' ? (
-    movies?.results?.map((movie: MovieItemSchema) => (
-      <MovieCard key={movie.id} data={movie} />
-    ))
-  ) : movies.errorMessage ? (
-    <div>
-      <ListError>{movies.errorMessage}</ListError>
-    </div>
-  ) : (
-    <div>
-      <ListError>Loading...</ListError>
-    </div>
-  );
-
+  renderMovies = movies?.results?.map((movie: MovieItemSchema) => (
+    <MovieCard key={movie.id} data={movie} />
+  ));
+  console.log(movies.results)
   return (
     <div style={{ minHeight: '80vh' }}>
-      {Object.keys(movies).length === 0 ? (
-        <LoadingContainer>
-          <p>Loading...</p>
-        </LoadingContainer>
-      ) : (
-        <MoviesList title={`RESULTS FOR "${expression?.toUpperCase()}"`}>
-          {renderMovies}
-        </MoviesList>
-      )}
+      {movies.errorMessage ? (
+        <ErrorContainer>
+          <Error>Sorry! <span>{movies.errorMessage}</span></Error>
+        </ErrorContainer>
+      ) :
+        Object.keys(movies).length === 0 && loading ? (
+          <Loading />
+        ) : (
+          <MoviesList
+            title={movies.results !== []
+              ? `RESULTS FOR "${expression?.toUpperCase()}"`
+              : `NO RESULTS FOR "${expression?.toUpperCase()}"`
+            }
+          >
+            {renderMovies}
+          </MoviesList>
+        )}
     </div>
   )
 };
