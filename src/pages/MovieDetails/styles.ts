@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from '../../styles/devices';
 import { txt } from '../../styles/themes/typography';
 
 export const MovieContainer = styled.div`
@@ -10,6 +11,14 @@ export const MovieGrid = styled.div`
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 50px;
+
+  @media ${device.tablet} {
+		grid-template-columns: 1fr 2fr;
+  }
+
+  @media ${device.mobileLarger} {
+		display: block;
+  }
 `;
 
 export const MovieNumbers = styled.div`
@@ -19,15 +28,24 @@ export const MovieNumbers = styled.div`
 `;
 
 export const MovieContentRating = styled.p`
-    color: ${props => props.theme.colors.text};
-    border: 1px solid ${props => props.theme.colors.text};
-		border-radius: 6px;
-		padding: 1px 3px;
-		margin-right: 6px;
+  font-size: ${txt.size.regular};
+  color: ${props => props.theme.colors.text};
+  border: 1px solid ${props => props.theme.colors.text};
+  border-radius: 6px;
+  padding: 1px 3px;
+  margin-right: 6px;
+
+  @media ${device.tablet} {
+    font-size: ${txt.size.extraSmall};
+  }
+
+  @media ${device.mobileLarger} {
+	  font-size: ${txt.size.regular};
   }
 `;
 
 export const MovieNumericalData = styled.p`
+  font-size: ${txt.size.regular};
   color: ${props => props.theme.colors.title};
   display: flex;
 
@@ -35,6 +53,14 @@ export const MovieNumericalData = styled.p`
     margin: 0 6px;
     font-weight: ${txt.weight.extrabold};
     color: ${props => props.theme.colors.primary};
+  }
+
+  @media ${device.tablet} {
+    font-size: ${txt.size.extraSmall};
+  }
+
+  @media ${device.mobileLarger} {
+	  font-size: ${txt.size.regular};
   }
 `;
 
@@ -56,6 +82,7 @@ export const MovieInfo = styled.p`
     padding: 5px 0px;
     color: ${props => props.theme.colors.title};
     font-weight: ${txt.weight.bold};
+    font-size: ${txt.size.regular};
     width: 100px;
     display: inline-block;
   }
@@ -67,6 +94,10 @@ export const MovieInfo = styled.p`
 
 export const MoviePoster = styled.img`
   width: 100%;
+
+  @media ${device.mobileLarger} {
+		margin-bottom: 20px;
+  }
 `;
 
 export const MovieSectionTitle = styled(MovieTitle)`

@@ -3,9 +3,12 @@ import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
 export const TopBar = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 	width: 100%;
   padding: 10px 50px;
-	position: relative;
 	background-color: ${props => props.theme.colors.gray500};
 `;
 

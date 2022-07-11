@@ -1,3 +1,6 @@
+
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+
 import {
   FooterContainer,
   SocialMedias,
@@ -7,6 +10,7 @@ import {
   LinkedInLink
 } from './styles';
 
+
 export const Footer = () => {
   return (
     <FooterContainer>
@@ -14,12 +18,12 @@ export const Footer = () => {
         <SocialMediaLink
           href='https://github.com/thiagocabralcorreia' target='_blank' rel='noreferrer'
         >
-          <SocialMediaIcon className='fab fa-github'></SocialMediaIcon>
+          <SocialMediaIcon icon={faGithub} />
         </SocialMediaLink>
         <SocialMediaLink
           href='https://www.linkedin.com/in/thiago-cabral-correia/' target='_blank' rel='noreferrer'
         >
-          <SocialMediaIcon className='fab fa-linkedin'></SocialMediaIcon>
+          <SocialMediaIcon icon={faLinkedin} />
         </SocialMediaLink>
       </SocialMedias>
       <FooterText>

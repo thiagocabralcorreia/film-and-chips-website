@@ -4,7 +4,6 @@ import { txt } from '../../styles/themes/typography';
 
 export const Card = styled.div`
   cursor: pointer;
-  transition: all 0.3s;
   padding: 10px;
   background-color: ${props => props.theme.colors.gray500};
   transition: 0.75s;
