@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../features/store';
 import { fetchAsyncSearchedMovies } from '../../features/movies/movieSlice';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import {
   SearchBarContainer,
@@ -33,7 +34,7 @@ export const SearchBar = () => {
       <SearchBarWrapper>
         <SearchBarForm onSubmit={handleOnSubmit}>
           <SearchButton type='submit'>
-            <InputIcon className='fa fa-search'></InputIcon>
+            <InputIcon icon={faSearch}></InputIcon>
           </SearchButton>
           <SearchBarInput
             type='text'

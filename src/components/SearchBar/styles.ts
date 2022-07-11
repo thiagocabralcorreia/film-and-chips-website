@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { txt } from '../../styles/themes/typography';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const SearchBarContainer = styled.div`
   display: block;
@@ -42,7 +42,7 @@ export const SearchBarInput = styled.input`
     }
 `;
 
-export const InputIcon = styled.i`
+export const InputIcon = styled(FontAwesomeIcon)`
   color: ${props => props.theme.colors.gray500};
 `;
 

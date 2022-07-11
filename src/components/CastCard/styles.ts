@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
 export const CardCast = styled.div`
-  cursor: pointer;
-  transition: all 0.3s;
   padding-bottom: 10px;
-  transition: 0.75s;
   border-radius: 6px;
 `;
 
@@ -28,10 +25,6 @@ export const CardCastPortrait = styled.img`
   min-height: 80%;
   opacity: 1;
   transition: 0.75s;
-
-  &:hover {
-    opacity: 0.6;
-  }
 `;
 
 export const CardCastInfo = styled.div`

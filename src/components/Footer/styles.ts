@@ -2,6 +2,8 @@
 import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export const FooterContainer = styled.div`
 	width: 100%;
 	box-shadow: 0px 0px 0px;
@@ -28,7 +30,7 @@ export const SocialMediaLink = styled.a`
   }
 `;
 
-export const SocialMediaIcon = styled.i`
+export const SocialMediaIcon = styled(FontAwesomeIcon)`
   font-size: ${txt.size.extraBig};
   color: ${props => props.theme.colors.white};
   transition: 0.5s;
