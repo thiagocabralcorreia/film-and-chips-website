@@ -116,14 +116,6 @@ export const MovieCast = styled.div`
   gap: 20px;
 `;
 
-export const LoadingContainer = styled.div`
-  height: 70vh;
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-`;
-
 export const MarginRight = styled.div`
   margin-right: 20px;
 `;

@@ -45,5 +45,6 @@ export interface MoviesSchema {
     movies: MovieSchema,
     searchedMovies: MovieSchema,
     selectedMovie: SelectedMovieSchema,
+    loading: boolean
   }
 };

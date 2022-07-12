@@ -1,5 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
 
+import styled from 'styled-components';
+import { txt } from './themes/typography';
+
 export default createGlobalStyle`
 	* {
 		margin: 0;
@@ -14,5 +17,32 @@ export default createGlobalStyle`
 	::selection {
 		color: ${props => props.theme.colors.white};
 		background:${props => props.theme.colors.primary};
+	}
+`;
+
+export const Title = styled.h1`
+	font-size: ${txt.size.giant};
+	font-weight: ${txt.weight.bold};
+	color: ${props => props.theme.colors.title};
+`;
+
+export const ErrorContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80vh;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+`;
+
+export const Error = styled.h1`
+  font-size: ${txt.size.h1};
+  color: ${props => props.theme.colors.primary};
+  margin-bottom: 20px;
+  font-weight: ${txt.weight.bold};
+
+  & > span {
+		color: ${props => props.theme.colors.alert};
 	}
 `;

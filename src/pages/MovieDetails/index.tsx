@@ -5,6 +5,7 @@ import { CastCard } from '../../components/CastCard';
 import { MovieCard } from '../../components/MovieCard';
 import { Slider } from '../../components/Slider';
 import { AppDispatch } from '../../features/store';
+import { Loading } from '../../components/Loading';
 
 import {
   getSelectedMovie,
@@ -23,11 +24,11 @@ import {
   MovieInfo,
   MoviePoster,
   MovieSectionTitle,
-  MarginRight,
-  LoadingContainer
+  MarginRight
 } from './styles';
 
 const MovieDetails = () => {
+
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const data = useSelector(getSelectedMovie);
@@ -42,9 +43,7 @@ const MovieDetails = () => {
   return (
     <MovieContainer>
       {Object.keys(data).length === 0 ? (
-        <LoadingContainer>
-          <p>Loading...</p>
-        </LoadingContainer>
+        <Loading />
       ) : (
         <>
           <MovieGrid>

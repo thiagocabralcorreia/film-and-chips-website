@@ -1,18 +1,20 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { fetchAsyncMovies, getAllMovies } from '../../features/movies/movieSlice';
+import { fetchAsyncMovies, getAllMovies, isLoading } from '../../features/movies/movieSlice';
 import { MovieCard } from '../../components/MovieCard';
 import { MoviesList} from '../../components/MoviesList';
 import { AppDispatch } from '../../features/store';
+import { Loading } from '../../components/Loading';
 
-import { ListError } from '../../components/MoviesList/styles';
 import { MovieItemSchema } from '../../types';
+import { ErrorContainer, Error } from '../../styles/global';
 
 const Home = () => {
   const dispatch = useDispatch<AppDispatch>();
   const movies = useSelector(getAllMovies);
+  const loading = useSelector(isLoading);
   let renderMovies = undefined;
 
   useEffect(() => {
@@ -23,23 +25,26 @@ const Home = () => {
     movies?.items?.map((movie: MovieItemSchema) => (
       <MovieCard key={movie.id} data={movie} />
     ))
-  ) : movies.errorMessage ? (
-    <div>
-      <ListError>{movies.errorMessage}</ListError>
-    </div>
   ) : (
     <div>
-      <ListError>Loading...</ListError>
     </div>
   );
 
   return (
-    <div style={{ minHeight: '80vh' }}>
-      <MoviesList title='MOST POPULAR'>
-        {renderMovies}
-      </MoviesList>
-    </div>
+    <>
+      {movies.errorMessage ? (
+        <ErrorContainer>
+          <Error>Sorry! <span>{movies.errorMessage}</span></Error>
+        </ErrorContainer>
+      ) : loading === true ? (
+        <Loading />
+      ) : (
+        <MoviesList title='MOST POPULAR'>
+          {renderMovies}
+        </MoviesList>
+      )}
+    </>
   )
-}
+};
 
 export default Home;
