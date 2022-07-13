@@ -23,7 +23,6 @@ export const SearchBar = () => {
     e.preventDefault();
     if (term !== '') {
       dispatch(fetchAsyncSearchedMovies(term));
-      console.log({ term })
       navigate(`/results/${term}`);
       setTerm('');
     }
