@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { txt } from '../../styles/themes/typography';
 
 export const ListContainer = styled.div`
-  margin: 20px 50px;
+  margin: 20px 50px 50px;
 `;
 
 export const ListMovies = styled.div`

@@ -3,7 +3,7 @@ import { device } from '../../styles/devices';
 import { txt } from '../../styles/themes/typography';
 
 export const MovieContainer = styled.div`
-  margin: 40px 50px;
+  margin: 40px 50px 50px;
   color:  ${props => props.theme.colors.title};
 `;
 
@@ -40,7 +40,7 @@ export const MovieContentRating = styled.p`
   }
 
   @media ${device.mobileLarger} {
-	  font-size: ${txt.size.regular};
+	  display: none;
   }
 `;
 
@@ -101,7 +101,8 @@ export const MoviePoster = styled.img`
 `;
 
 export const MovieSectionTitle = styled(MovieTitle)`
-  padding: 20px 0;
+  padding: 20px 0 20px;
+  margin-top: 10px;
   font-size: ${txt.size.h2};
 
   & > span {

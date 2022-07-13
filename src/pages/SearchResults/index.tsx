@@ -34,7 +34,7 @@ const SearchResults = () => {
   renderMovies = movies?.results?.map((movie: MovieItemSchema) => (
     <MovieCard key={movie.id} data={movie} />
   ));
-  console.log(movies.results)
+  
   return (
     <div style={{ minHeight: '80vh' }}>
       {movies.errorMessage ? (
@@ -47,7 +47,7 @@ const SearchResults = () => {
         ) : (
           <MoviesList
             title={movies.results !== []
-              ? `RESULTS FOR "${expression?.toUpperCase()}"`
+              ? `MAIN RESULTS FOR "${expression?.toUpperCase()}"`
               : `NO RESULTS FOR "${expression?.toUpperCase()}"`
             }
           >

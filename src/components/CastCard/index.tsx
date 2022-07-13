@@ -22,7 +22,7 @@ export const CastCard = ({ star }: CastCardSchema) => {
         </CardCastTop>
         <CardCastInfo>
           <CardCastName>{star.name}</CardCastName>
-          <CardCastAsCharacter>as {star.asCharacter}</CardCastAsCharacter>
+          {star.asCharacter && <CardCastAsCharacter>as {star.asCharacter}</CardCastAsCharacter>}
         </CardCastInfo>
       </div>
     </CardCast>

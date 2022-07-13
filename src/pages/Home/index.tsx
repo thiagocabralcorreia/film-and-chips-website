@@ -22,7 +22,7 @@ const Home = () => {
   }, [dispatch]);
 
   renderMovies = movies.errorMessage === '' ? (
-    movies?.items?.map((movie: MovieItemSchema) => (
+    movies?.items?.slice(0, 27).map((movie: MovieItemSchema) => (
       <MovieCard key={movie.id} data={movie} />
     ))
   ) : (

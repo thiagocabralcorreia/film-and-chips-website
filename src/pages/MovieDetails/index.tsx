@@ -82,14 +82,14 @@ const MovieDetails = () => {
                   <span>Writer</span>
                   <span>{data.writers}</span>
                 </MovieInfo>
-                <MovieInfo>
+                {data.genres && <MovieInfo>
                   <span>Genres</span>
                   <span>{data.genres}</span>
-                </MovieInfo>
-                <MovieInfo>
+                </MovieInfo>}
+                {data.languages && <MovieInfo>
                   <span>Languages</span>
                   <span>{data.languages}</span>
-                </MovieInfo>
+                </MovieInfo>}
               </div>
             </div>
           </MovieGrid>
